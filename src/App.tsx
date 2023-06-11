@@ -32,7 +32,7 @@ const App = () => {
     <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={HomeRoute} />;
+          <Route path="/" element={HomeRoute} />
           <Route path="/contact" Component={Contact} />
           <Route path="/login" element={LoginRoute} />
           <Route path="/register" Component={Register} />
