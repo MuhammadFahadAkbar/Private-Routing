@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../App";
 import { redirect } from "react-router-dom";
 import { useFormik } from "formik";
+import { LoginSchema } from "../../schemas/LoginSchema";
 
 const initialValues = {
   email: "",
@@ -11,15 +12,17 @@ const initialValues = {
 const Login = () => {
   const { setIsLoggedIn } = useContext(AuthContext);
 
-  const { values, handleBlur, handleChange, handleSubmit } = useFormik({
-    initialValues: initialValues,
-    onSubmit: () => {
-      setIsLoggedIn(true);
-      console.log("Values", values);
-      redirect("/");
-    },
-  });
-  
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues,
+      validationSchema: LoginSchema,
+      onSubmit: () => {
+        setIsLoggedIn(true);
+        console.log("Values", values);
+        redirect("/");
+      },
+    });
+
   return (
     <>
       <h1>Log In</h1>
@@ -33,6 +36,7 @@ const Login = () => {
           onBlur={handleBlur}
           onChange={handleChange}
         />
+        {errors.email && touched.email && <p>{errors.email}</p>}
         <br />
         <label htmlFor="password">Password:</label>
         <input
@@ -43,8 +47,9 @@ const Login = () => {
           onBlur={handleBlur}
           onChange={handleChange}
         />
+        {errors.password && touched.password && <p>{errors.password}</p>}
         <br />
-        <button type="submit">Submit</button>
+        <button type="submit">Login</button>
       </form>
     </>
   );
