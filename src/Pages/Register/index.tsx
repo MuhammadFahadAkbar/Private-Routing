@@ -1,5 +1,7 @@
 const Register = () => {
   return (
+    <>
+    <h1>Register</h1>
     <form>
       <label htmlFor="name">Name:</label>
       <input type="text" id="name" name="name" />
@@ -15,6 +17,7 @@ const Register = () => {
       <br />
       <button type="submit">Register</button>
     </form>
+    </>
   );
 };
 
