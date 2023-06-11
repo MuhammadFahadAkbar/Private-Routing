@@ -1,16 +1,57 @@
 import { useContext } from "react";
 import { AuthContext } from "../../App";
-import { Link } from "react-router-dom";
+import { redirect } from "react-router-dom";
+import { useFormik } from "formik";
+import { LoginSchema } from "../../schemas/LoginSchema";
+
+const initialValues = {
+  email: "",
+  password: "",
+};
 
 const Login = () => {
   const { setIsLoggedIn } = useContext(AuthContext);
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
+
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues,
+      validationSchema: LoginSchema,
+      onSubmit: () => {
+        setIsLoggedIn(true);
+        console.log("Values", values);
+        redirect("/");
+      },
+    });
+
   return (
-    <Link to="/" onClick={handleLogin}>
-      Log In
-    </Link>
+    <>
+      <h1>Log In</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={values.email}
+          onBlur={handleBlur}
+          onChange={handleChange}
+        />
+        {errors.email && touched.email && <p>{errors.email}</p>}
+        <br />
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value={values.password}
+          onBlur={handleBlur}
+          onChange={handleChange}
+        />
+        {errors.password && touched.password && <p>{errors.password}</p>}
+        <br />
+        <button type="submit">Login</button>
+      </form>
+    </>
   );
 };
 
