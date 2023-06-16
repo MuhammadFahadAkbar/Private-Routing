@@ -1,13 +1,13 @@
-import { useContext } from "react";
-import { AuthContext } from "../../App";
-import { Link } from "react-router-dom";
+// import { useContext } from "react";
+// import { AuthContext } from "../../App";
+// import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Home = () => {
-  const { setIsLoggedIn } = useContext(AuthContext);
-  const handleLogin = () => {
-    setIsLoggedIn(false);
-  };
+  // const { setIsLoggedIn } = useContext(AuthContext);
+  // const handleLogin = () => {
+  //   setIsLoggedIn(false);
+  // };
 
   const { logout } = useAuth0();
 

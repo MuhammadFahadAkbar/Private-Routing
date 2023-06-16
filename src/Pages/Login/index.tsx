@@ -1,28 +1,28 @@
-import { useContext } from "react";
-import { AuthContext } from "../../App";
-import { redirect } from "react-router-dom";
-import { useFormik } from "formik";
-import { LoginSchema } from "../../schemas/LoginSchema";
+// import { useContext } from "react";
+// import { AuthContext } from "../../App";
+// import { redirect } from "react-router-dom";
+// import { useFormik } from "formik";
+// import { LoginSchema } from "../../schemas/LoginSchema";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const initialValues = {
-  email: "",
-  password: "",
-};
+// const initialValues = {
+//   email: "",
+//   password: "",
+// };
 
 const Login = () => {
-  const { setIsLoggedIn } = useContext(AuthContext);
+  // const { setIsLoggedIn } = useContext(AuthContext);
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues,
-      validationSchema: LoginSchema,
-      onSubmit: () => {
-        setIsLoggedIn(true);
-        console.log("Values", values);
-        redirect("/");
-      },
-    });
+  // const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+  //   useFormik({
+  //     initialValues,
+  //     validationSchema: LoginSchema,
+  //     onSubmit: () => {
+  //       setIsLoggedIn(true);
+  //       console.log("Values", values);
+  //       redirect("/");
+  //     },
+  //   });
 
   const { loginWithRedirect } = useAuth0();
 
