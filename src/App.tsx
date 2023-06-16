@@ -5,6 +5,7 @@ import Contact from "./Pages/Contact";
 import Register from "./Pages/Register";
 import { createContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import { Auth0Provider } from "@auth0/auth0-react";
 interface AuthContextProps {
   isLoggedIn: boolean;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -29,16 +30,24 @@ const App = () => {
   const LoginRoute = !isLoggedIn ? <Login /> : <Navigate to="/" />;
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={HomeRoute} />
-          <Route path="/contact" Component={Contact} />
-          <Route path="/login" element={LoginRoute} />
-          <Route path="/register" Component={Register} />
-        </Routes>
-      </BrowserRouter>
-    </AuthContext.Provider>
+    // <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+      <Auth0Provider
+        domain="dev-vv56j5skcswxbfmp.us.auth0.com"
+        clientId="Z3nC5ve1eWkkWJvC6zVgBr8OWwiMiF7U"
+        authorizationParams={{
+          redirect_uri: window.location.origin,
+        }}
+      >
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={HomeRoute} />
+            <Route path="/contact" Component={Contact} />
+            <Route path="/login" element={LoginRoute} />
+            <Route path="/register" Component={Register} />
+          </Routes>
+        </BrowserRouter>
+      </Auth0Provider>
+    // </AuthContext.Provider>
   );
 };
 
