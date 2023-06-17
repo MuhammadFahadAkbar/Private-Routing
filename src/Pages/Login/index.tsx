@@ -3,8 +3,7 @@
 // import { redirect } from "react-router-dom";
 // import { useFormik } from "formik";
 // import { LoginSchema } from "../../schemas/LoginSchema";
-import { useAuth0 } from "@auth0/auth0-react";
-
+import { Typography } from "@mui/material";
 // const initialValues = {
 //   email: "",
 //   password: "",
@@ -24,12 +23,9 @@ const Login = () => {
   //     },
   //   });
 
-  const { loginWithRedirect } = useAuth0();
-
   return (
     <>
-      <h1>Log In</h1>
-      <button onClick={() => loginWithRedirect()}>Log In</button>
+      <Typography variant="h5" component="h5">Log In</Typography>
       {/* <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email:</label>
         <input
