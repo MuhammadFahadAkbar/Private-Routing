@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Contact from "./Pages/Contact";
-import Register from "./Pages/Register";
 import { useAuth0 } from "@auth0/auth0-react";
 import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
@@ -43,7 +42,6 @@ const App = () => {
         <Route path="/" Component={isAuthenticated ? Home : Login} />
         <Route path="/contact" Component={Contact} />
         <Route path="/login" Component={!isAuthenticated ? Login : Home} />
-        <Route path="/register" Component={Register} />
       </Routes>
     </BrowserRouter>
   );
